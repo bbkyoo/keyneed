@@ -3,26 +3,37 @@
         <v-layout row wrap>
             <v-flex xs6>
             <div>      
-            <h1>SubmitForm</h1>
+            <h1>Submit</h1>
                 <v-checkbox
-                    label="Top"
+                    label="성명"
                     hide-details
                 ></v-checkbox>
                 <v-checkbox
-                    label="Right"
+                    label="생년월일"
                     hide-details
                 ></v-checkbox>
                 <v-checkbox
-                    label="Bottom"
+                    label="휴대폰 번호"
                     hide-details
                 ></v-checkbox>
-                <v-checkbox
-                    label="Left"
-                    hide-details
-                ></v-checkbox>
-
-                <v-btn class="my-5" router :to="{name: 'mainpage'}" exact > submit </v-btn>
+                
+                <v-btn class="my-5" @click="Submmit()" > submit </v-btn>
+                <p>@@찜질방</p>
             </div>
+            <v-alert :value="isSubmmit"
+                prominent
+                type="success"
+            >
+                <v-row align="center">
+                    <v-col class="grow">
+                        DID네트워크로 해당 정보가 전송되었습니다.
+                    </v-col>
+                    <v-col class="shrink">
+                        <v-btn router :to="{ name: 'mainpage' }" exact>확인</v-btn>
+                    </v-col>
+                </v-row>
+            </v-alert>
+
             </v-flex>
         </v-layout>
   </v-container>
@@ -32,9 +43,12 @@
 export default {
     data(){
         return{
-            email: null,
-            password: null,
-            name: null
+            isSubmmit: false
+        }
+    },
+    methods: {
+        Submmit(){
+            this.isSubmmit = true
         }
     }
 }
